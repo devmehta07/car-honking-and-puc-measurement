@@ -6,6 +6,8 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>         
 #include <EEPROM.h>
+int sensorPin = D0;    // select the input pin for the potentiometer
+int sensorValue = 0;  // variable to store the value coming from the sensor
 
 String IFTTT_KEY = "cmB-6qGrAEIMc6q-dvkcyV"; //replace this with your IFTTT applet key
 int a=0;
@@ -45,14 +47,28 @@ void setup() {
   Serial.println(WiFi.localIP());
 }
 void loop() {
+    sensorValue = !(digitalRead(sensorPin)); //PUC
+  Serial.println(sensorValue);
+
+  if sensorValue == {HIGH}{
+      OLED.begin();
+      OLED.clearDisplay();
+      OLED.setTextSize(1);
+      OLED.setTextColor(WHITE);
+      OLED.setCursor(0, 0);
+      OLED.println("Go for PUC check");
+      OLED.display();
+  }
+  }
+  
   if(i==1 && (millis()-j) >5000){
-        OLED.begin();
-        OLED.clearDisplay();
-        OLED.setTextSize(1);
-        OLED.setTextColor(WHITE);
-        OLED.setCursor(0, 0);
-        OLED.println("");
-        OLED.display();
+      OLED.begin();
+      OLED.clearDisplay();
+      OLED.setTextSize(1);
+      OLED.setTextColor(WHITE);
+      OLED.setCursor(0, 0);
+      OLED.println("");
+      OLED.display();
         i=0;
     }
   int reading = digitalRead(buttonPin);
@@ -216,4 +232,5 @@ void wifi(){
              Serial.println(data); 
            }
   }
+
 
