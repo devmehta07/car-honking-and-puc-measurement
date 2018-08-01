@@ -22,7 +22,7 @@ const int buttonPin = D3;
 int i=0;
 int buttonState;
 int lastButtonState = HIGH;
-unsigned long lastDebounceTime = 0,j=0,h=0;
+unsigned long lastDebounceTime = 0,j=0,h=0,Currenttime,fun=0;
 unsigned long debounceDelay = 50;
 int firsttime = 1;
 unsigned long startTime;
@@ -50,7 +50,7 @@ void loop() {
     sensorValue = !(digitalRead(sensorPin)); //PUC
   Serial.println(sensorValue);
 
-  if sensorValue == {HIGH}{
+  if (sensorValue ==HIGH){
       OLED.begin();
       OLED.clearDisplay();
       OLED.setTextSize(1);
@@ -58,9 +58,16 @@ void loop() {
       OLED.setCursor(0, 0);
       OLED.println("Go for PUC check");
       OLED.display();
+      if (fun==fun){
+      Currenttime=millis();
+      fun=(!fun);
+      }
   }
+   if (Currenttime-millis() >=90000){
+      Serial.print {"Now you've had it"} //replace
+      fun=fun;
   }
-  
+      
   if(i==1 && (millis()-j) >5000){
       OLED.begin();
       OLED.clearDisplay();
@@ -158,6 +165,7 @@ void loop() {
     firsttime = 1;
 
   }
+
 }
 
 void fine(){
@@ -232,5 +240,4 @@ void wifi(){
              Serial.println(data); 
            }
   }
-
 
